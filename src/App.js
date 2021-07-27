@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Container} from 'react-bootstrap'
 import Header from './components/header/Header';
+import MainBody from './components/main-body/MainBody';
 import SearchBar from './components/search-bar/SearchBar';
 
 class App extends Component {
@@ -9,6 +10,7 @@ class App extends Component {
       <Container>
         <Header/>
         <SearchBar/>
+        <MainBody/>
       </Container>
     );
   }

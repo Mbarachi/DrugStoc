@@ -1,0 +1,11 @@
+.filter{
+    padding: 25px;
+    background-color: white;
+    opacity: 1;
+}
+
+.filter b{
+   color:#6F7070;
+   margin-bottom: 15px;
+   display: block;
+}

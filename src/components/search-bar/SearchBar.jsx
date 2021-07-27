@@ -1,11 +1,11 @@
 import React from 'react'
 import './search-bar.styles.css'
-import { InputGroup,FormControl } from 'react-bootstrap'
+import { InputGroup,FormControl, Row } from 'react-bootstrap'
 import {BsSearch, BsFilterLeft} from 'react-icons/bs'
 
  const SearchBar = () => {
     return (
-        <React.Fragment>
+        <Row>
             <InputGroup size="lg">
                 <InputGroup.Text className="icon-bg">
                     <BsSearch/>
@@ -15,7 +15,7 @@ import {BsSearch, BsFilterLeft} from 'react-icons/bs'
                     <span style={{fontSize:"15px"}}>Sort by</span> <BsFilterLeft/>
                 </InputGroup.Text>
             </InputGroup>
-        </React.Fragment>
+        </Row>
     )
 }
 

@@ -3,4 +3,27 @@ body {
   padding: 0;
   font-family: sans-serif;
   background-color: #F0F0F1;
+  font-family: 'Roboto', sans-serif;
+}
+.form-check{
+  margin-bottom: 10px;
+}
+
+.form-check-label{
+  font-weight: 200;
+  font-size: 15px;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+  color: black;
+  background-color: transparent;
+  border-bottom: 3px solid #4B70D6;
+}
+
+.nav-tabs .nav-link{
+  border: none;
+}
+
+.nav-link{
+  color: #9A9A9A;
 }
