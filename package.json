@@ -10,7 +10,10 @@
     "react-icons": "^4.2.0",
     "react-scripts": "0.9.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@iconify-icons/mdi": "^1.1.16",
+    "@iconify/react": "^1.1.4"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
