@@ -7,9 +7,10 @@ import {MdMessage, MdModeEdit, MdDeleteForever} from 'react-icons/md'
 import {FiMoreHorizontal} from 'react-icons/fi'
 
 
- const TaskArea = ({showEditModal}) => {
+ const TaskArea = ({showEditModal, confirm}) => {
 
     const [dropDown, toggleDropdown] = useState(false)
+
    
     return (
         <Row className="rectangle">
@@ -77,7 +78,7 @@ import {FiMoreHorizontal} from 'react-icons/fi'
                     <Dropdown.Item onClick={showEditModal}>
                         Edit <MdModeEdit color="green"/>
                     </Dropdown.Item>
-                    <Dropdown.Item>
+                    <Dropdown.Item onClick={confirm}>
                        Delete <MdDeleteForever color="red"/>
                     </Dropdown.Item>
                 </Dropdown.Menu>
