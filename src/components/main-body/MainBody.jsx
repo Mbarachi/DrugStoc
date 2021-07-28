@@ -10,10 +10,10 @@ import TabsPagination from '../tabs-pagination/TabsPagination'
     return (
         <React.Fragment>
             <Row className="row-margin">
-                <Col sm={3}>
+                <Col sm={3} md={3}>
                     <FilterMenu/>
                 </Col>
-                <Col sm={9}>
+                <Col sm={9} md={9}>
                     <TabsPagination/>
                     <TaskArea/>
                 </Col>
