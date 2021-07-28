@@ -5,21 +5,28 @@ import MainBody from './components/main-body/MainBody';
 import SearchBar from './components/search-bar/SearchBar';
 import {useState} from 'react'
 import AddNewTaskModal from './components/add-new-task-modal/AddNewTaskModal';
+import EditTaskModal from './components/edit-task-modal/EditTaskModal';
 
 const App = () =>  {
 
-  const [modalShow, setModalShow] = useState(false);
+  const [addModalShow, setAddModalShow] = useState(false);
+  const [editModalShow, setEditModalShow] = useState(false)
 
-  const showModal = () => {
-    setModalShow(true)
+  const showAddModal = () => {
+    setAddModalShow(true)
+  }
+
+  const showEditModal = () => {
+    setEditModalShow(true)
   }
 
     return (
       <Container>
-        <Header showModal={showModal}/>
+        <Header showAddModal={showAddModal}/>
         <SearchBar/>
-        <MainBody/>
-        <AddNewTaskModal show={modalShow} onHide={() => setModalShow(false)}/>
+        <MainBody showEditModal={showEditModal}/>
+        <AddNewTaskModal show={addModalShow} onHide={() => setAddModalShow(false)}/>
+        <EditTaskModal show={editModalShow} onHide={() => setEditModalShow(false)}/>
       </Container>
     );
 }

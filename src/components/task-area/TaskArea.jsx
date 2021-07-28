@@ -7,7 +7,7 @@ import {MdMessage, MdModeEdit, MdDeleteForever} from 'react-icons/md'
 import {FiMoreHorizontal} from 'react-icons/fi'
 
 
- const TaskArea = () => {
+ const TaskArea = ({showEditModal}) => {
 
     const [dropDown, toggleDropdown] = useState(false)
    
@@ -74,7 +74,7 @@ import {FiMoreHorizontal} from 'react-icons/fi'
                 </Dropdown.Toggle>
  
                 <Dropdown.Menu>
-                    <Dropdown.Item>
+                    <Dropdown.Item onClick={showEditModal}>
                         Edit <MdModeEdit color="green"/>
                     </Dropdown.Item>
                     <Dropdown.Item>

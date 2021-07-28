@@ -3,7 +3,7 @@ import './header.styles.css'
 import { Navbar } from "react-bootstrap"
 import CustomButton from "../custom-button/CustomButton"
 
- const Header = ({showModal}) => {
+ const Header = ({showAddModal}) => {
 
     return (
         <div className="header">
@@ -16,7 +16,7 @@ import CustomButton from "../custom-button/CustomButton"
                     />
                 </Navbar.Brand>
                 <span>
-                    <CustomButton showModal={showModal}/>
+                    <CustomButton showAddModal={showAddModal}/>
                 </span>
         </div>
     )

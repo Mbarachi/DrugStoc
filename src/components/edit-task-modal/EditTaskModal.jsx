@@ -1,7 +1,7 @@
 import React from 'react'
 import { Modal, Button } from 'react-bootstrap'
 
- const AddNewTaskModal = (props) => {
+const EditTaskModal = (props) => {
     return (
         <Modal
             {...props}
@@ -11,7 +11,7 @@ import { Modal, Button } from 'react-bootstrap'
         >
             <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-                Add New Task
+                Edit Task
             </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -29,4 +29,4 @@ import { Modal, Button } from 'react-bootstrap'
     )
 }
 
-export default AddNewTaskModal
+export default EditTaskModal

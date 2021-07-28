@@ -6,7 +6,7 @@ import FilterMenu from '../filter-menu/FilterMenu'
 import TaskArea from '../task-area/TaskArea'
 import TabsPagination from '../tabs-pagination/TabsPagination'
 
- const MainBody = () => {
+ const MainBody = ({showEditModal}) => {
     return (
         <React.Fragment>
             <Row className="row-margin">
@@ -15,7 +15,7 @@ import TabsPagination from '../tabs-pagination/TabsPagination'
                 </Col>
                 <Col sm={9} md={9}>
                     <TabsPagination/>
-                    <TaskArea/>
+                    <TaskArea showEditModal={showEditModal}/>
                 </Col>
             </Row>
             
