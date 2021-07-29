@@ -16,6 +16,7 @@ const App = () =>  {
   const [editModalShow, setEditModalShow] = useState(false)
 
   const [tasks, setTasks] = useState([])
+  
 
   const [selectedValue, setselectedValue] = useState("")
   const [sortstatus, setSortStatus] = useState(false);
@@ -47,6 +48,8 @@ const App = () =>  {
       ]
     });
   }
+
+
   
   // call Api on load
   useEffect(() => {
@@ -119,6 +122,7 @@ const App = () =>  {
           showEditModal={showEditModal} 
           confirm={confirmDelete} 
           tasks={tasks}
+
         />
         <AddNewTaskModal 
           show={addModalShow} 

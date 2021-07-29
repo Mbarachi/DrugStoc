@@ -1,7 +1,8 @@
 import React from 'react'
 import { Row, Col, Tab, Tabs } from 'react-bootstrap'
+import ReactPaginate from 'react-paginate'
 
- const TabsPagination = () => {
+ const TabsPagination = ({pageCount, changePage}) => {
     return (
         <Row>
             <Col sm={10}>
@@ -21,7 +22,17 @@ import { Row, Col, Tab, Tabs } from 'react-bootstrap'
                 </Tabs>
             </Col>
             <Col sm={2}>
-                Pagination
+                <ReactPaginate
+                    previousLabel={"Prev"}
+                    nextLabel={"Next"}
+                    pageCount={pageCount}
+                    onPageChange={changePage}
+                    containerClassName={"paginationBttns"}
+                    previousLinkClassName={"previousBttn"}
+                    nextLinkClassName={"nextBttn"}
+                    disabledClassName={"paginationDisabled"}
+                    // activeClassName={"pagintionActive"}
+                />
             </Col>
         </Row>
     )

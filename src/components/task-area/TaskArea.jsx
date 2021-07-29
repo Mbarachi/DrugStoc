@@ -7,13 +7,13 @@ import {MdMessage, MdModeEdit, MdDeleteForever} from 'react-icons/md'
 import {FiMoreHorizontal} from 'react-icons/fi'
 
 
- const TaskArea = ({showEditModal, confirm, tasks}) => {
+ const TaskArea = ({showEditModal, confirm, task}) => {
 
     const [dropDown, toggleDropdown] = useState(false)
 
             return (
                 <React.Fragment>
-                    {tasks.map((task) => (
+                        <b>CURRENT</b> 
                         <Row className="rectangle" key={task.id}>
                         <Col sm={1} md={1}>
                             <BsReverseLayoutTextSidebarReverse/>
@@ -89,7 +89,6 @@ import {FiMoreHorizontal} from 'react-icons/fi'
                             
                         </Col>
                     </Row> 
-                    ))}
                 </React.Fragment>
             )      
 }

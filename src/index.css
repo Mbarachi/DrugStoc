@@ -27,3 +27,24 @@ body {
 .nav-link{
   color: #9A9A9A;
 }
+
+.paginationBttns {
+  width: 30%;
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.paginationBttns a{
+  padding: 10px;
+  margin: 8px;
+  border-radius:5px;
+  color: #9A9A9A;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.pagintionActive li a{
+  display: none;
+}

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react'
 import './main-body.styles.css'
 import { Row, Col } from 'react-bootstrap'
 
@@ -7,6 +8,30 @@ import TaskArea from '../task-area/TaskArea'
 import TabsPagination from '../tabs-pagination/TabsPagination'
 
  const MainBody = ({showEditModal, confirm, tasks}) => {
+
+    const [pageNumber, setPageNumber] = useState(0)
+
+    const tasksPerPage = 6
+    const pagesVisited = pageNumber * tasksPerPage
+
+    const pageCount = Math.ceil(tasks.length / tasksPerPage)
+
+    const changePage = ({selected}) => {
+        setPageNumber(selected)
+    }
+
+    const displayTasks = tasks
+        .slice(pagesVisited, pagesVisited + tasksPerPage)
+        .map(task => {
+            return (
+                <TaskArea 
+                    key={task.id}
+                    showEditModal={showEditModal} 
+                    confirm={confirm}
+                    task={task}
+                />
+            )})
+
     return (
         <React.Fragment>
             <Row className="row-margin">
@@ -14,15 +39,13 @@ import TabsPagination from '../tabs-pagination/TabsPagination'
                     <FilterMenu tasks={tasks}/>
                 </Col>
                 <Col sm={9} md={9}>
-                    <TabsPagination/>
-                    <TaskArea 
-                        showEditModal={showEditModal} 
-                        confirm={confirm}
-                        tasks={tasks}
+                    <TabsPagination
+                        pageCount={pageCount}
+                        changePage={changePage}
                     />
+                    {displayTasks}
                 </Col>
             </Row>
-            
         </React.Fragment>
     )
 }
