@@ -2,17 +2,44 @@ import React from 'react'
 import { Form } from 'react-bootstrap'
 import './filter-menu.styles.css'
 
- const FilterMenu = () => {
+ const FilterMenu = ({tasks}) => {
+
+
     return (
         <div className="filter">
             <b>Tags</b>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Custom Task" />
-                <Form.Check type="checkbox" label="Marketing & Sales" />
-                <Form.Check type="checkbox" label="Integrations" />
-                <Form.Check type="checkbox" label="Optimization" />
-                <Form.Check type="checkbox" label="Deployment" />
-                <Form.Check type="checkbox" label="Testing" />
+                <Form.Check 
+                    type="checkbox" 
+                    label="Custom Task" 
+                    value="Custom Task"
+                />
+                <Form.Check 
+                    type="checkbox" 
+                    label="Marketing & Sales" 
+                    value="Marketing & Sales"
+                />
+
+                <Form.Check 
+                    type="checkbox" 
+                    label="Integrations" 
+                    value="Integrations"
+                />
+                <Form.Check 
+                    type="checkbox" 
+                    label="Optimization" 
+                    value="Optimization"
+                />
+                <Form.Check 
+                    type="checkbox" 
+                    label="Deployment" 
+                    value="Deployment"
+                />
+                <Form.Check 
+                    type="checkbox" 
+                    label="Testing" 
+                    value="Testing"
+                />
             </Form.Group>
             <b>Task Price Range</b>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">

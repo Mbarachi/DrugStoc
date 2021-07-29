@@ -11,7 +11,7 @@ import TabsPagination from '../tabs-pagination/TabsPagination'
         <React.Fragment>
             <Row className="row-margin">
                 <Col sm={3} md={3}>
-                    <FilterMenu/>
+                    <FilterMenu tasks={tasks}/>
                 </Col>
                 <Col sm={9} md={9}>
                     <TabsPagination/>

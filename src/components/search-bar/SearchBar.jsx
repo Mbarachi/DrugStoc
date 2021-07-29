@@ -3,7 +3,7 @@ import './search-bar.styles.css'
 import { InputGroup,FormControl, Row, Col } from 'react-bootstrap'
 import {BsSearch, BsFilterLeft} from 'react-icons/bs'
 
- const SearchBar = () => {
+ const SearchBar = ({sortTasks, flipSort}) => {
     return (
         <Row>
             <Col>
@@ -13,7 +13,16 @@ import {BsSearch, BsFilterLeft} from 'react-icons/bs'
                     </InputGroup.Text>
                     <FormControl aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
                     <InputGroup.Text className="icon-bg">
-                        <span style={{fontSize:"15px"}}>Sort by</span> <BsFilterLeft/>
+                        <span 
+                            style={{fontSize:"15px"}}>
+                            Sort by
+                        </span> 
+                        <BsFilterLeft onClick={() => flipSort()}/>
+                        <select onChange={(e) => sortTasks(e.target.value)}>
+                            <option value="">none</option>
+                            <option value="price">Price</option>
+                            <option value="alphabet">Alphabetically</option>
+                        </select>
                     </InputGroup.Text>
                 </InputGroup>
             </Col>
