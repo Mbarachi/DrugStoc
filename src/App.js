@@ -24,7 +24,7 @@ const App = () =>  {
 
   const confirmDelete = () => {
     confirmAlert({
-      title: 'Confirm to Delete',
+      title: 'Confirm Delete',
       message: 'Are you sure you want to delete this task?',
       buttons: [
         {
