@@ -9,7 +9,7 @@
 }
 
 #task-font{
-    font-size: 12px;
+    font-size: 11px;
     color: #3E3E3E;
 }
 
@@ -26,7 +26,7 @@
 }
 
 .name{
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .assigned{
@@ -44,10 +44,8 @@
     border-radius: 10px;
     padding: px;
     padding: 3px 15px;
-    color: black;
     font-style: italic;
     border: none;
-    background-color: #E2E2E2;
     font-size: 8px;
 }
 
@@ -82,4 +80,38 @@
 
  .dropdown:hover .dropdown-menu {
     display: block;
+}
+
+.marksales{
+    color: #E24B4B;
+    background-color: #FFCCCC;
+    opacity: 1;
+}
+
+.optimization{
+    color: #A6E009;
+    background-color: #F3F8E4;
+    opacity: 1;
+}
+
+.integration{
+    color: #00A7FF;
+    background-color: #C4EBFF;
+    opacity:1
+}
+
+.custom-task{
+    color: #707070;
+    background-color: #E2E2E2;
+    opacity:1
+}
+
+.deployment{
+    color: #0d6efd;
+    background-color: #afcaf1;
+    opacity: 1;
+}
+.testing{
+    color: green;
+    background-color: rgb(216 243 216);
 }

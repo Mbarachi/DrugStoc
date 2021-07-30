@@ -20,6 +20,22 @@ const App = () =>  {
   const [selectedValue, setselectedValue] = useState("")
   const [sortstatus, setSortStatus] = useState(false);
 
+
+  // Retrieve Data from the database 
+  const retrieveTask = () => {
+    axios.get('https://us-central1-drugstoc-cc402.cloudfunctions.net/app/api/read')
+      .then(res => {
+        const tasks = res.data.map(task => {
+          task.isVisible = true;
+          return task;
+        })
+        setTasks(tasks);
+      })
+        .catch(error => {
+          console.log(error)
+        })
+  }
+
   const [data, setData] = useState({
     taskname: "",
     name: "",
@@ -67,7 +83,10 @@ const App = () =>  {
         imageurl: data.imageurl
       })
         .then(res => {
-            console.log(res.data)
+          if(res.status === 200){
+            setAddModalShow(false)
+            retrieveTask()
+          }
         })
   }
 
@@ -84,7 +103,10 @@ const App = () =>  {
       imageurl: editData.imageurl
     })
       .then(res => {
-          console.log(res.data)
+          if(res.status === 200){
+            setEditModalShow(false)
+            retrieveTask()
+          }
       })
 }
 
@@ -107,16 +129,9 @@ const App = () =>  {
     setEditData(newData)
   }
 
-
   // call Api on load
   useEffect(() => {
-    axios.get('https://us-central1-drugstoc-cc402.cloudfunctions.net/app/api/read')
-      .then(res => {
-        setTasks(res.data)
-      })
-        .catch(error => {
-          console.log(error)
-        })
+    retrieveTask()
   },[])
 
   // Delete task from list
@@ -132,7 +147,9 @@ const App = () =>  {
     const newTaskList = tasks.filter(task => {
       return task.id !== taskid
     })
-    setTasks(newTaskList)
+    setTimeout(() => {
+      setTasks(newTaskList)
+    }, 1500)
   }
 
     // /Sort Function by name
@@ -184,6 +201,28 @@ const App = () =>  {
       }
     }
 
+    const filterTasks = ({checked, value}) => {
+      if(checked) {
+          const filteredTask = tasks.map(task => {
+            console.log(task.tag !== value);
+              if(task.tag !== value){
+                  task.isVisible = false;
+              }
+              return task;
+          });
+          setTasks(filteredTask);
+      }else{
+        const filteredTask = tasks.map(task => {
+          console.log(task.tag !== value);
+            if(task.tag !== value){
+                task.isVisible = true;
+            }
+            return task;
+        });
+        setTasks(filteredTask);
+      }
+  }
+
     return (
       <Container>
         <Header showAddModal={showAddModal}/>
@@ -195,6 +234,7 @@ const App = () =>  {
           showEditModal={showEditModal} 
           tasks={tasks}
           deleteTask={deleteTask}
+          filterTasks={filterTasks}
         />
         <AddNewTaskModal 
           show={addModalShow} 

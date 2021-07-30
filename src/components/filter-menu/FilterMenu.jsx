@@ -2,8 +2,23 @@ import React from 'react'
 import { Form } from 'react-bootstrap'
 import './filter-menu.styles.css'
 
- const FilterMenu = ({tasks}) => {
+ const FilterMenu = ({tasks, filterTasks}) => {
 
+    // const filterTasks = ({checked, value}) => {
+    //     console.log(checked)
+    //     console.log(value)
+    //     if(!!checked) {
+    //         tasks.forEach(task => {
+    //             if(task.tag === value){
+    //                 task.isVisible = false
+    //             }
+    //             return tasks
+    //         })
+
+    //         return tasks.filter(task => task.isVisible !== true)
+
+    //     }
+    // }
 
     return (
         <div className="filter">
@@ -13,32 +28,38 @@ import './filter-menu.styles.css'
                     type="checkbox" 
                     label="Custom Task" 
                     value="Custom Task"
+                    onChange={(e) => filterTasks(e.target)}
                 />
                 <Form.Check 
                     type="checkbox" 
                     label="Marketing & Sales" 
                     value="Marketing & Sales"
+                    onChange={(e) => filterTasks(e.target)}
                 />
 
                 <Form.Check 
                     type="checkbox" 
                     label="Integrations" 
                     value="Integrations"
+                    onChange={(e) => filterTasks(e.target)}
                 />
                 <Form.Check 
                     type="checkbox" 
                     label="Optimization" 
                     value="Optimization"
+                    onChange={(e) => filterTasks(e.target)}
                 />
                 <Form.Check 
                     type="checkbox" 
                     label="Deployment" 
                     value="Deployment"
+                    onChange={(e) => filterTasks(e.target)}
                 />
                 <Form.Check 
                     type="checkbox" 
                     label="Testing" 
                     value="Testing"
+                    onChange={(e) => filterTasks(e.target)}
                 />
             </Form.Group>
             <b>Task Price Range</b>
