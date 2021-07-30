@@ -5,15 +5,34 @@ import { Row, Col, Button, Dropdown } from 'react-bootstrap'
 import {BsReverseLayoutTextSidebarReverse} from 'react-icons/bs'
 import {MdMessage, MdModeEdit, MdDeleteForever} from 'react-icons/md'
 import {FiMoreHorizontal} from 'react-icons/fi'
+import { confirmAlert } from 'react-confirm-alert'; 
 
 
- const TaskArea = ({showEditModal, confirm, task}) => {
+
+ const TaskArea = ({showEditModal, confirm, task, tasks, deleteTask}) => {
 
     const [dropDown, toggleDropdown] = useState(false)
 
+    const confirmDelete = (taskid) => {
+        confirmAlert({
+          title: 'Confirm Delete',
+          message: 'Are you sure you want to delete this task?',
+          buttons: [
+            {
+              label: 'Yes',
+              onClick: () => deleteTask(taskid)
+            },
+            {
+              label: 'No',
+              onClick: ''
+            }
+          ]
+        });
+      }
+
             return (
                 <React.Fragment>
-                        <b>CURRENT</b> 
+                        
                         <Row className="rectangle" key={task.id}>
                         <Col sm={1} md={1}>
                             <BsReverseLayoutTextSidebarReverse/>
@@ -81,7 +100,7 @@ import {FiMoreHorizontal} from 'react-icons/fi'
                                 <Dropdown.Item onClick={showEditModal}>
                                     Edit <MdModeEdit color="green"/>
                                 </Dropdown.Item>
-                                <Dropdown.Item onClick={confirm}>
+                                <Dropdown.Item onClick={() => confirmDelete(task.id)}>
                                    Delete <MdDeleteForever color="red"/>
                                 </Dropdown.Item>
                             </Dropdown.Menu>

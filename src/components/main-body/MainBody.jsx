@@ -7,7 +7,7 @@ import FilterMenu from '../filter-menu/FilterMenu'
 import TaskArea from '../task-area/TaskArea'
 import TabsPagination from '../tabs-pagination/TabsPagination'
 
- const MainBody = ({showEditModal, confirm, tasks}) => {
+ const MainBody = ({showEditModal, confirm, tasks, deleteTask}) => {
 
     const [pageNumber, setPageNumber] = useState(0)
 
@@ -29,6 +29,8 @@ import TabsPagination from '../tabs-pagination/TabsPagination'
                     showEditModal={showEditModal} 
                     confirm={confirm}
                     task={task}
+                    tasks={tasks}
+                    deleteTask={deleteTask}
                 />
             )})
 

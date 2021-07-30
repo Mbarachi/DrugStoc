@@ -6,7 +6,6 @@ import SearchBar from './components/search-bar/SearchBar';
 import {useState, useEffect} from 'react'
 import AddNewTaskModal from './components/add-new-task-modal/AddNewTaskModal';
 import EditTaskModal from './components/edit-task-modal/EditTaskModal';
-import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import axios from 'axios';
 
@@ -21,8 +20,39 @@ const App = () =>  {
   const [selectedValue, setselectedValue] = useState("")
   const [sortstatus, setSortStatus] = useState(false);
 
+  const [data, setData] = useState({
+    taskname: "",
+    name: "",
+    price: "",
+    delivery: "",
+    tag: "",
+    status: "",
+    imageurl: ""
+  })
 
-  // const [taskslist, setTasklist] = useState([])
+  const handleAddTask = (e) => {
+    const newData = {...data}
+    console.log(newData)
+    newData[e.target.id] = e.target.value
+    setData(newData)
+  }
+
+
+  const submit = (e) => {
+      e.preventDefault();
+      axios.post('https://us-central1-drugstoc-cc402.cloudfunctions.net/app/api/create', {
+        taskname: data.taskname,
+        name: data.name,
+        price: data.price,
+        delivery: data.delivery,
+        tag: data.tag,
+        status: data.status,
+        imageurl: data.imageurl
+      })
+        .then(res => {
+            console.log(res.data)
+        })
+  }
 
   const showAddModal = () => {
     setAddModalShow(true)
@@ -32,25 +62,7 @@ const App = () =>  {
     setEditModalShow(true)
   }
 
-  const confirmDelete = () => {
-    confirmAlert({
-      title: 'Confirm Delete',
-      message: 'Are you sure you want to delete this task?',
-      buttons: [
-        {
-          label: 'Yes',
-          onClick: () => alert('Click Yes')
-        },
-        {
-          label: 'No',
-          onClick: () => alert('Click No')
-        }
-      ]
-    });
-  }
 
-
-  
   // call Api on load
   useEffect(() => {
     axios.get('https://us-central1-drugstoc-cc402.cloudfunctions.net/app/api/read')
@@ -61,6 +73,22 @@ const App = () =>  {
           console.log(error)
         })
   },[])
+
+  // Delete task from list
+
+  const deleteTask = (taskid) => {
+    axios.delete(`https://us-central1-drugstoc-cc402.cloudfunctions.net/app/api/delete/${taskid}`)
+      .then(data => {
+        console.log(data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    const newTaskList = tasks.filter(task => {
+      return task.id !== taskid
+    })
+    setTasks(newTaskList)
+  }
 
     // /Sort Function by name
     const compareWithName = (a, b) => {
@@ -120,13 +148,15 @@ const App = () =>  {
         />
         <MainBody 
           showEditModal={showEditModal} 
-          confirm={confirmDelete} 
           tasks={tasks}
-
+          deleteTask={deleteTask}
         />
         <AddNewTaskModal 
           show={addModalShow} 
           onHide={() => setAddModalShow(false)}
+          submit={submit}
+          handleAddTask={handleAddTask}
+          data={data}
         />
         <EditTaskModal 
           show={editModalShow} 
