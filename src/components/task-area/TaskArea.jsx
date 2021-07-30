@@ -39,11 +39,11 @@ const TaskArea = ({ showEditModal, confirm, task, tasks, deleteTask }) => {
           <Button
             className={`pill ${
               task.tag === "Marketing & Sales" ? "marksales" : ""
-            } || ${task.tag === "Optimization" ? "optimization" : ""} || ${
+            } ${task.tag === "Optimization" ? "optimization" : "null"} ${
               task.tag === "Integrations" ? "integration" : ""
-            } || ${task.tag === "Custom Task" ? "custom-task" : ""} || ${
+            } ${task.tag === "Custom Task" ? "custom-task" : ""} ${
               task.tag === "Deployment" ? "deployment" : ""
-            } || ${
+            } ${
                 task.tag === "Testing" ? "testing" : ""
               } `}
           >

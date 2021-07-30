@@ -20,6 +20,8 @@ const App = () =>  {
   const [selectedValue, setselectedValue] = useState("")
   const [sortstatus, setSortStatus] = useState(false);
 
+  const [taskFilterValues] = useState([])
+
 
   // Retrieve Data from the database 
   const retrieveTask = () => {
@@ -27,6 +29,7 @@ const App = () =>  {
       .then(res => {
         const tasks = res.data.map(task => {
           task.isVisible = true;
+          task.isPriceVisible = true;
           return task;
         })
         setTasks(tasks);
@@ -91,7 +94,6 @@ const App = () =>  {
   }
 
   const editTask = (e, taskid) => {
-    console.log(taskid)
     e.preventDefault();
     axios.put(`https://us-central1-drugstoc-cc402.cloudfunctions.net/app/api/update/${taskid}`, {
       taskname: editData.taskname,
@@ -135,7 +137,6 @@ const App = () =>  {
   },[])
 
   // Delete task from list
-
   const deleteTask = (taskid) => {
     axios.delete(`https://us-central1-drugstoc-cc402.cloudfunctions.net/app/api/delete/${taskid}`)
       .then(data => {
@@ -182,6 +183,7 @@ const App = () =>  {
       }
     }
 
+
     const flipSort = () => {
       if (selectedValue === "price" && sortstatus === false) {
         setTasks([...tasks.sort(compareWithPrice)].reverse());
@@ -200,28 +202,45 @@ const App = () =>  {
         setSortStatus(false);
       }
     }
+    const filter = filterValues => {
+      const filteredTask = tasks.map(task => {
+        if(!filterValues.includes(task.tag)) {
+          task.isVisible = false;
+        } else {
+          task.isVisible = true;
+        }
+        if(filterValues.length === 0) {
+          task.isVisible = true;
+        }
+        return task
+      });
+      setTasks(filteredTask);
+    }
 
-    const filterTasks = ({checked, value}) => {
-      if(checked) {
-          const filteredTask = tasks.map(task => {
-            console.log(task.tag !== value);
-              if(task.tag !== value){
-                  task.isVisible = false;
-              }
-              return task;
-          });
-          setTasks(filteredTask);
-      }else{
-        const filteredTask = tasks.map(task => {
-          console.log(task.tag !== value);
-            if(task.tag !== value){
-                task.isVisible = true;
-            }
-            return task;
-        });
-        setTasks(filteredTask);
-      }
+  const filterTasks = ({checked, value}) => {
+    if(checked) {
+      taskFilterValues.push(value);
+    } else {
+      const index = taskFilterValues.indexOf(value);
+      taskFilterValues.splice(index, 1);
+    }
+    filter(taskFilterValues)
   }
+
+    
+  const getTasksInPriceRange = (min, max) => tasks.map(task => {
+    if(task.price/1 > min && task.price/1 <= max) {
+      task.isPriceVisible = true;
+    } else {
+      task.isPriceVisible = false;
+    }
+    return task;
+  })
+
+    const filterTasksByprice = (min, max) => {
+      const filteredTasks = getTasksInPriceRange(min, max)
+      setTasks(filteredTasks)
+    }
 
     return (
       <Container>
@@ -235,6 +254,7 @@ const App = () =>  {
           tasks={tasks}
           deleteTask={deleteTask}
           filterTasks={filterTasks}
+          filterTasksByprice={filterTasksByprice}
         />
         <AddNewTaskModal 
           show={addModalShow} 
