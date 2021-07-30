@@ -74,6 +74,24 @@
     margin-right: 10px;
   }
 
+  .dot-in-progress {
+    height: 8px;
+    width: 8px;
+    background-color: #00A7FF;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .dot-in-review {
+    height: 8px;
+    width: 8px;
+    background-color: #E0CF09;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+  }
+
   .dropdown-toggle:after {
     border: 0;
  }

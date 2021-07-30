@@ -39,13 +39,11 @@ const TaskArea = ({ showEditModal, confirm, task, tasks, deleteTask }) => {
           <Button
             className={`pill ${
               task.tag === "Marketing & Sales" ? "marksales" : ""
-            } ${task.tag === "Optimization" ? "optimization" : "null"} ${
+            } ${task.tag === "Optimization" ? "optimization" : ""} ${
               task.tag === "Integrations" ? "integration" : ""
             } ${task.tag === "Custom Task" ? "custom-task" : ""} ${
               task.tag === "Deployment" ? "deployment" : ""
-            } ${
-                task.tag === "Testing" ? "testing" : ""
-              } `}
+            } ${task.tag === "Testing" ? "testing" : ""} `}
           >
             {task.tag}
           </Button>
@@ -68,7 +66,15 @@ const TaskArea = ({ showEditModal, confirm, task, tasks, deleteTask }) => {
         </Col>
         <Col sm={2} md={2}>
           <Button className="status">
-            <span className="dot"></span>
+            <span
+              className={`${
+                task.status === "In Progress" ? "dot-in-progress" : ""
+              }${
+                task.status === "In Review" ? "dot-in-review" : ""
+              }${
+                task.status === "Verified" ? "dot" : ""
+              }`}
+            ></span>
             {task.status}
           </Button>
         </Col>
