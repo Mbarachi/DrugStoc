@@ -21,7 +21,7 @@ const AddNewTaskModal = (props) => {
             <Col>
               <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Name</Form.Label>
-                <Form.Control type="text" onChange={(e) => {props.handleAddTask(e)}} value={props.data.name}/>
+                <Form.Control type="text" onChange={(e) => props.handleAddTask(e)} value={props.data.name}/>
               </Form.Group>
             </Col>
             <Col>
@@ -63,7 +63,7 @@ const AddNewTaskModal = (props) => {
             <Form.Label>Image Url</Form.Label>
             <Form.Control type="text" onChange={(e) => props.handleAddTask(e)} value={props.data.imageurl} />
           </Form.Group>
-            <Button onClick={(e) => props.submit(e)}>Add Task</Button>
+            <Button onClick={(e) => props.addNewTask(e)}>Add Task</Button>
         </Form>
       </Modal.Body>
       <Modal.Footer>

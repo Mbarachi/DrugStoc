@@ -97,7 +97,7 @@ import { confirmAlert } from 'react-confirm-alert';
                             </Dropdown.Toggle>
              
                             <Dropdown.Menu>
-                                <Dropdown.Item onClick={showEditModal}>
+                                <Dropdown.Item onClick={() => showEditModal(task)}>
                                     Edit <MdModeEdit color="green"/>
                                 </Dropdown.Item>
                                 <Dropdown.Item onClick={() => confirmDelete(task.id)}>

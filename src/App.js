@@ -30,6 +30,18 @@ const App = () =>  {
     imageurl: ""
   })
 
+  const [editData, setEditData] = useState({
+    id: "",
+    taskname: "",
+    name: "",
+    price: "",
+    delivery: "",
+    tag: "",
+    status: "",
+    imageurl: ""
+  })
+
+
   const handleAddTask = (e) => {
     const newData = {...data}
     console.log(newData)
@@ -37,8 +49,13 @@ const App = () =>  {
     setData(newData)
   }
 
+  const handleEditTask = (e) => {
+    const newData = {...editData}
+    newData[e.target.id] = e.target.value
+    setEditData(newData)
+  }
 
-  const submit = (e) => {
+  const addNewTask = (e) => {
       e.preventDefault();
       axios.post('https://us-central1-drugstoc-cc402.cloudfunctions.net/app/api/create', {
         taskname: data.taskname,
@@ -54,12 +71,40 @@ const App = () =>  {
         })
   }
 
+  const editTask = (e, taskid) => {
+    console.log(taskid)
+    e.preventDefault();
+    axios.put(`https://us-central1-drugstoc-cc402.cloudfunctions.net/app/api/update/${taskid}`, {
+      taskname: editData.taskname,
+      name: editData.name,
+      price: editData.price,
+      delivery: editData.delivery,
+      tag: editData.tag,
+      status: editData.status,
+      imageurl: editData.imageurl
+    })
+      .then(res => {
+          console.log(res.data)
+      })
+}
+
   const showAddModal = () => {
     setAddModalShow(true)
   }
 
-  const showEditModal = () => {
+
+  const showEditModal = (task) => {
     setEditModalShow(true)
+    const newData = {...editData}
+    newData.id = task.id
+    newData.name = task.name
+    newData.taskname = task.taskname
+    newData.delivery = task.delivery
+    newData.price = task.price
+    newData.tag = task.tag
+    newData.imageurl = task.imageurl
+    newData.status = task.status
+    setEditData(newData)
   }
 
 
@@ -154,13 +199,16 @@ const App = () =>  {
         <AddNewTaskModal 
           show={addModalShow} 
           onHide={() => setAddModalShow(false)}
-          submit={submit}
+          addNewTask={addNewTask}
           handleAddTask={handleAddTask}
           data={data}
         />
         <EditTaskModal 
           show={editModalShow} 
           onHide={() => setEditModalShow(false)}
+          editData={editData}
+          handleEditTask={handleEditTask}
+          editTask={editTask}
         />
       </Container>
     );
